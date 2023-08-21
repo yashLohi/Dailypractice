@@ -1,0 +1,34 @@
+########### 1 st  aproach  #########
+
+class Reverse
+{
+   public static String reverseWord(String str){
+       StringBuilder sb = new StringBuilder();
+       for(int i = str.length()-1; i>=0; i--){
+           sb.append(str.charAt(i));
+       }
+       return sb.toString();
+   }
+}
+
+########### 2 nd approach   #########
+
+class Reverse
+{
+    // Complete the function
+    // str: input string
+    public static String reverseWord(String str)
+    {
+        String nstr="";
+        char ch;
+        // Reverse the string str
+      for (int i=0; i<str.length(); i++)
+      {
+        ch= str.charAt(i); //extracts each character
+        nstr= ch+nstr; //adds each character in front of the existing string
+      }
+    //   System.out.println("Reversed word: "+ nstr);
+           
+       return nstr;
+    }
+}
