@@ -1,0 +1,45 @@
+############  Brute ##############
+
+class Compute 
+{
+    static pair getMinMax(long a[], long n)  
+    {
+        long min = a[0];
+        long max = a[0];
+        for (int i = 0; i < n; i++) {
+            if (min > a[i]) {
+                min = a[i];
+            }
+            if (max < a[i]) {
+                max = a[i];
+            }
+        }
+        pair ans = new pair(min, max);
+        return ans;
+    }
+}
+
+############  Optimal ##############
+
+class Compute 
+{
+    static pair getMinMax(long a[], long n)  
+    {
+        //Write your code here
+        long min = Integer.MAX_VALUE;
+        long max = Integer.MIN_VALUE;
+        pair minmax = new pair(min,max);
+        
+        for(int i =0;i<n;i++){
+            if(a[i]<minmax.first){
+                minmax.first =a[i];
+            }
+            
+            if(a[i] > minmax.second){
+                minmax.second = a[i];
+            }
+        
+        }
+          return minmax;
+    }
+}
