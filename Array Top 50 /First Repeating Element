@@ -1,0 +1,71 @@
+class Solution {
+    // Function to return the position of the first repeating element.
+    public static int firstRepeated(int[] arr, int n) {
+        // Your code here
+        int temp[] = new int[10000000];
+        for(int i = 0; i<n; i++){
+            temp[arr[i]]++;
+        }
+        for(int i = 0; i<n; i++){
+            if(temp[arr[i]] > 1)
+            return i+1;
+        }
+        return -1;
+    }
+}
+
+
+###############################
+
+
+class Solution {
+  public:
+    int firstRepeated(int arr[], int n) {
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(arr[i]==arr[j]){
+                    return i+1;
+                }
+            }
+        }
+        return -1;
+    }
+};
+
+
+######################################3
+
+
+class Solution {
+    // Function to return the position of the first repeating element.
+    public static int firstRepeated(int[] arr, int n) {
+
+        boolean flag = false;
+        int ans = -1;
+
+        // using map to store frequency of each element.
+        Map<Integer, Integer> m = new HashMap<>();
+
+        // storing the frequency of each element in map.
+        for (int i = 0; i < n; i++) {
+            if (m.containsKey(arr[i])) {
+                m.put(arr[i], m.get(arr[i]) + 1);
+            } else {
+                m.put(arr[i], 1);
+            }
+        }
+
+        // iterating over the array elements.
+        for (int i = 0; i < n; i++) {
+            // if frequency of current element in map is greater than 1,
+            // then we store the index and break the loop.
+            if (m.get(arr[i]) > 1) {
+                ans = i + 1;
+                break;
+            }
+        }
+
+        // returning the position of the first repeating element.
+        return ans;
+    }
+}
