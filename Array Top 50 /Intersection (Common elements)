@@ -1,0 +1,102 @@
+#############Binary Search ############# Time complexity: O(n1(log(n2*n3))
+class Solution
+{
+    ArrayList<Integer> commonElements(int A[], int B[], int C[], int n1, int n2, int n3) 
+    {
+        // code here 
+        ArrayList<Integer> res = new ArrayList<>();
+        for(int i = 0; i<n1; i++){
+            if(binarySearch(A[i], B, n2))
+            {
+                if(binarySearch(A[i], C, n3))
+                {
+                    if(!res.contains(A[i]))
+                        res.add(A[i]);
+                }
+            }
+        }
+        return res;
+    }
+    
+    boolean binarySearch(int key, int arr[], int n){
+        int low = 0, high = n-1;
+        while(low <= high)
+        {
+            int mid = low + (high - low)/2;
+            if(arr[mid] == key)
+                return true;
+            else if(arr[mid] < key)
+                low = mid+1;
+            else 
+                high =  mid -1;
+        }
+        return false;
+    }
+}
+
+
+###################  Three Pointer #####################
+
+class FindCommon {
+    // This function prints common elements in ar1
+    void findCommon(int ar1[], int ar2[], int ar3[])
+    {
+        // Initialize starting indexes for ar1[], ar2[] and
+        // ar3[]
+        int i = 0, j = 0, k = 0;
+
+        // Iterate through three arrays while all arrays
+        // have elements
+        while (i < ar1.length && j < ar2.length
+               && k < ar3.length) {
+            // If x = y and y = z, print any of them and
+            // move ahead in all arrays
+            if (ar1[i] == ar2[j] && ar2[j] == ar3[k]) {
+                System.out.print(ar1[i] + " ");
+                i++;
+                j++;
+                k++;
+            }
+
+            // x < y
+            else if (ar1[i] < ar2[j])
+                i++;
+
+            // y < z
+            else if (ar2[j] < ar3[k])
+                j++;
+
+            // We reach here when x > y and z < y, i.e., z
+            // is smallest
+            else
+                k++;
+        }
+    }
+
+
+####################  Hash Set ##################
+
+class GFG {
+    static void findCommon(int a[], int b[], int c[], int n1, int n2,int n3)
+{
+    // three sets to maintain frequency of elements
+    HashSet<Integer> uset = new HashSet<>();
+    HashSet<Integer> uset2 = new HashSet<>();
+    HashSet<Integer> uset3 = new HashSet<>();
+    for (int i = 0; i < n1; i++) {
+        uset.add(a[i]);
+    }
+    for (int i = 0; i < n2; i++) {
+        uset2.add(b[i]);
+    }
+    // checking if elements of 3rd array are present in
+    // first 2 sets
+    for (int i = 0; i < n3; i++) {
+        if (uset.contains(c[i]) && uset2.contains(c[i])) {
+            // using a 3rd set to prevent duplicates
+            if (uset3.contains(c[i]) == false)
+                System.out.print(c[i]+" ");
+            uset3.add(c[i]);
+        }
+    }
+}
